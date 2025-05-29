@@ -38,4 +38,11 @@ public class PlayerController {
     public void deletePlayer(@PathVariable int id) {
         playerService.deletePlayer(id);
     }
+
+    @PutMapping("assignProfile")
+    public Player assignProfile(@RequestParam int playerId,
+                                @RequestParam int profileId) {
+
+        return playerService.assignProfile(playerId, profileId);
+    }
 }
