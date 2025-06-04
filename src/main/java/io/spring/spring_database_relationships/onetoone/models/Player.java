@@ -1,8 +1,12 @@
 package io.spring.spring_database_relationships.onetoone.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Player {
 
     @Id
@@ -11,8 +15,11 @@ public class Player {
 
     private String name;
 
+    // To make The one-to-one unidirectional relation
     @OneToOne(cascade = CascadeType.ALL)
+    // Name the foreign key column profile_id that's mapped from id in the PlayerProfile entity
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
+//    @JsonProperty("profile") // to rename the field in the json request/response
     private PlayerProfile playerProfile;
 
     public Player() {
