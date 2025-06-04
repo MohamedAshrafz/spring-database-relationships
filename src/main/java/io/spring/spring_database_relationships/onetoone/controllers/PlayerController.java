@@ -28,6 +28,11 @@ public class PlayerController {
         return playerService.getPlayerById(id);
     }
 
+    @GetMapping("search")
+    public List<Player> getPlayerByName(@RequestParam String name) {
+        return playerService.getPlayerByName(name);
+    }
+
     @PostMapping
     public Player addPlayer(@RequestBody Player player) {
         player.setId(0);

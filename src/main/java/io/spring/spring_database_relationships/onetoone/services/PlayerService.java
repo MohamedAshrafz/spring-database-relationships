@@ -28,6 +28,10 @@ public class PlayerService {
         return playerRepo.findById(id).get();
     }
 
+    public List<Player> getPlayerByName(String name) {
+        return playerRepo.findPlayerByName(name);
+    }
+
     public Player addPlayer(Player player) {
         player.setId(0);
         return playerRepo.save(player);
