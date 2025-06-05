@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tournaments")
+@RequestMapping(EndpointsNames.TOURNAMENTS)
 public class TournamentController {
 
     @Autowired
@@ -34,16 +34,23 @@ public class TournamentController {
         return service.addTournament(tournament);
     }
 
-    @PutMapping(path = "/assignRegistration", params = "id")
+    @PutMapping(path = EndpointsNames.ASSIGN_TOURNAMENT, params = "id")
     public Tournament addRegistration(@RequestParam int id, @RequestBody Registration registration) {
         return service.addRegistration(id, registration);
     }
 
-    @PutMapping(path = "/assignRegistration", params = {"id", "regId"})
+    @PutMapping(path = EndpointsNames.ASSIGN_TOURNAMENT, params = {"id", "regId"})
     public Tournament assignRegistration(@RequestParam int id, @RequestParam int regId) {
         Registration registration = registrationService.getRegistration(regId);
         System.out.println("assignRegistration the registration is: " + registration);
         return service.addRegistration(id, registration);
+    }
+
+    @PutMapping(path = EndpointsNames.REMOVE_TOURNAMENT, params = {"id", "regId"})
+    public Tournament removeRegistration(@RequestParam int id, @RequestParam int regId) {
+        Registration registration = registrationService.getRegistration(regId);
+        System.out.println("assignRegistration the registration is: " + registration);
+        return service.removeRegistration(id, registration);
     }
 
     @DeleteMapping(params = "id")

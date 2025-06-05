@@ -14,7 +14,7 @@ public class Tournament {
     private String name;
     private String location;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "tournament_id")
     private List<Registration> registrations;
 
@@ -30,6 +30,11 @@ public class Tournament {
 
     public void addRegistration(Registration reg) {
         registrations.add(reg);
+    }
+
+    public void removeRegistration(Registration reg) {
+        if (reg != null)
+            registrations.remove(reg);
     }
 
     public int getId() {
