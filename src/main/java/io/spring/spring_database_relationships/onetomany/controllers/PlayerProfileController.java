@@ -24,8 +24,8 @@ public class PlayerProfileController {
         return playerProfileService.getAllPlayersProfiles();
     }
 
-    @GetMapping("{id}")
-    public PlayerProfile getPlayerProfileById(@PathVariable("id") int playerId) {
+    @GetMapping(params = "id")
+    public PlayerProfile getPlayerProfileById(@RequestParam("id") int playerId) {
         return playerProfileService.getPlayerProfileById(playerId);
     }
 
@@ -35,9 +35,9 @@ public class PlayerProfileController {
         return playerProfileService.addPlayerProfile(playerProfile);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping(params = "id")
     @Transactional
-    public void deletePlayerProfile(@PathVariable int id) {
+    public void deletePlayerProfile(@RequestParam int id) {
         playerProfileService.deletePlayerProfile(id);
     }
 }

@@ -23,8 +23,8 @@ public class PlayerController {
         return playerService.getAllPlayers();
     }
 
-    @GetMapping("{id}")
-    public Player getPlayerById(@PathVariable int id) {
+    @GetMapping(params = "id")
+    public Player getPlayerById(@RequestParam int id) {
         return playerService.getPlayerById(id);
     }
 
@@ -39,15 +39,15 @@ public class PlayerController {
         return playerService.addPlayer(player);
     }
 
-    @DeleteMapping("{id}")
-    public void deletePlayer(@PathVariable int id) {
+    @DeleteMapping(params = "id")
+    public void deletePlayer(@RequestParam int id) {
         playerService.deletePlayer(id);
     }
 
-    @PutMapping("assignProfile")
-    public Player assignProfile(@RequestParam int playerId,
+    @PutMapping(path = "assignProfile", params = {"id", "profileId"})
+    public Player assignProfile(@RequestParam int id,
                                 @RequestParam int profileId) {
 
-        return playerService.assignProfile(playerId, profileId);
+        return playerService.assignProfile(id, profileId);
     }
 }
