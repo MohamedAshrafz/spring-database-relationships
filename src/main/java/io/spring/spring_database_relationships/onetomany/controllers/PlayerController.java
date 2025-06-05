@@ -2,6 +2,7 @@ package io.spring.spring_database_relationships.onetomany.controllers;
 
 import io.spring.spring_database_relationships.onetomany.models.Player;
 import io.spring.spring_database_relationships.onetomany.services.PlayerService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,9 +46,18 @@ public class PlayerController {
     }
 
     @PutMapping(path = "assignProfile", params = {"id", "profileId"})
+    @Transactional
     public Player assignProfile(@RequestParam int id,
                                 @RequestParam int profileId) {
 
         return playerService.assignProfile(id, profileId);
+    }
+
+    @PutMapping(path = "tournamentRegistration", params = {"id", "tournamentId"})
+    @Transactional
+    public Player registerPlayerInTournament(@RequestParam int id,
+                                             @RequestParam int tournamentId) {
+
+        return playerService.registerPlayerInTournament(id, tournamentId);
     }
 }

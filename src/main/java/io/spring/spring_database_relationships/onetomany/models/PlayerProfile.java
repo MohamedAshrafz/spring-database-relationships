@@ -1,10 +1,12 @@
 package io.spring.spring_database_relationships.onetomany.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 @Entity
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id") // To solve the recursion while serializing
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id") // To solve the recursion while serializing
 public class PlayerProfile {
 
     @Id
@@ -13,7 +15,7 @@ public class PlayerProfile {
     private String twitter;
 
     @OneToOne(mappedBy = "playerProfile", cascade = CascadeType.ALL)
-    @JsonBackReference // For the owned in the relation to solve the recursion issue
+//    @JsonBackReference // For the owned in the relation to solve the recursion issue
     private Player player;
 
     public PlayerProfile() {
