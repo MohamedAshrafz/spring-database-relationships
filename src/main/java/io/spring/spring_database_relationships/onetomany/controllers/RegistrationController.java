@@ -19,8 +19,8 @@ public class RegistrationController {
         return service.allRegistrations();
     }
 
-    @GetMapping("/{id}")
-    public Registration getRegistration(@PathVariable int id){
+    @GetMapping(params = "id")
+    public Registration getRegistration(@RequestParam int id){
         return service.getRegistration(id);
     }
 
@@ -29,8 +29,8 @@ public class RegistrationController {
         return service.addRegistration(registration);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteRegistration(@PathVariable int id) {
+    @DeleteMapping(params = "id")
+    public void deleteRegistration(@RequestParam int id) {
         service.deleteRegistration(id);
     }
 }
