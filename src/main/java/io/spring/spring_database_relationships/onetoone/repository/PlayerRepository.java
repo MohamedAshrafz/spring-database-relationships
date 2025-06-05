@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PlayerJPARepository extends JpaRepository<Player, Integer> {
+public interface PlayerRepository extends JpaRepository<Player, Integer> {
 
     @Query("SELECT p FROM Player p WHERE name LIKE %:playerName%")
     public List<Player> findPlayerByName(@Param("playerName") String name);

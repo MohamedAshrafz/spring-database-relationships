@@ -1,7 +1,7 @@
 package io.spring.spring_database_relationships.onetoone.services;
 
 import io.spring.spring_database_relationships.onetoone.models.PlayerProfile;
-import io.spring.spring_database_relationships.onetoone.repository.PlayerProfileJPARepository;
+import io.spring.spring_database_relationships.onetoone.repository.PlayerProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +10,10 @@ import java.util.List;
 @Service
 public class PlayerProfileService {
 
-    private final PlayerProfileJPARepository repo;
+    private final PlayerProfileRepository repo;
 
     @Autowired
-    public PlayerProfileService(PlayerProfileJPARepository repo) {
+    public PlayerProfileService(PlayerProfileRepository repo) {
         this.repo = repo;
     }
 
