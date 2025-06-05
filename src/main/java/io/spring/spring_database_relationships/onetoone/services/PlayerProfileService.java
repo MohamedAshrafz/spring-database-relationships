@@ -31,6 +31,20 @@ public class PlayerProfileService {
     }
 
     public void deletePlayerProfile(int id) {
-        repo.deleteById(id);
+        // Because the relationship is bidirectional we must break the association first
+        // before deleting the player profile if we do not want to delete the associated player when deleting its profile
+        PlayerProfile playerProfile = repo.findById(id).get();
+
+        //set the playerProfile field of the Player object to null
+        playerProfile.getPlayer().setPlayerProfile(null);
+
+        //set the player field of the PlayerProfile object to null
+        playerProfile.setPlayer(null);
+
+        //save changes
+        repo.save(playerProfile);
+
+        //delete the PlayerProfile object
+        repo.delete(playerProfile);
     }
 }

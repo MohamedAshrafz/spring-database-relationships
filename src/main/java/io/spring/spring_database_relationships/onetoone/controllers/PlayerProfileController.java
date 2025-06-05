@@ -2,6 +2,7 @@ package io.spring.spring_database_relationships.onetoone.controllers;
 
 import io.spring.spring_database_relationships.onetoone.models.PlayerProfile;
 import io.spring.spring_database_relationships.onetoone.services.PlayerProfileService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +36,7 @@ public class PlayerProfileController {
     }
 
     @DeleteMapping("{id}")
+    @Transactional
     public void deletePlayerProfile(@PathVariable int id) {
         playerProfileService.deletePlayerProfile(id);
     }
